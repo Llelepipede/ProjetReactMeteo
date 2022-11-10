@@ -1,12 +1,11 @@
 import React from 'react';
-import {Dimensions, SafeAreaView} from 'react-native';
 
-import Routes from './src/config/routes';
+import { Text, View } from 'react-native';
 
 const App = () => {
   return (
     <View>
-      
+      <Text>Hello world!</Text>
     </View>
   );
 };
