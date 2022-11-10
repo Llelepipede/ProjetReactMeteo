@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginMeteo from '../screens/LoginMeteo';
-
+import Home from '../screens/Home';
 
 const Routes = props => {
   const Stack = createNativeStackNavigator();
@@ -13,7 +13,12 @@ const Routes = props => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="/"
+          name="Home"
+          component={Home}
+          options={{ title: 'Home' }}
+        />
+        <Stack.Screen
+          name="Login"
           component={LoginMeteo}
           options={{ title: 'Login' }}
         />
