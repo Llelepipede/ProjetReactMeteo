@@ -6,7 +6,7 @@ import Routes from './src/config/routes';
 const App = () => {
   return (
     <View>
-      
+      <View></View>
     </View>
   );
 };
