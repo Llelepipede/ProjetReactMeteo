@@ -1,12 +1,24 @@
 import React from 'react';
 
-import {Text, View, SafeAreaView} from 'react-native';
+import {SafeAreaView, Dimensions} from 'react-native';
+
+import Routes from './src/configuration/routes';
+
+import {ThemeProvider} from 'styled-components';
+
+import theme from './src/configuration/theme';
 
 const App = () => {
   return (
-    <View>
-      <Text>Hello world!</Text>
-    </View>
+    <SafeAreaView
+      style={{
+        width: '100%',
+        height: Dimensions.get('window').height,
+      }}>
+      <ThemeProvider theme={theme}>
+        <Routes />
+      </ThemeProvider>
+    </SafeAreaView>
   );
 };
 
