@@ -2,10 +2,9 @@ import React from 'react';
 
 import { Dimensions, SafeAreaView } from 'react-native';
 
-import Routes from './src/configuration/routes';
-
 import { ThemeProvider } from 'styled-components';
-import styled from 'styled-components';
+
+import Routes from './src/configuration/routes';
 
 import theme from './src/configuration/theme';
 
