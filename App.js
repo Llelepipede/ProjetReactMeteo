@@ -1,24 +1,33 @@
 import React from 'react';
 
-import {SafeAreaView, Dimensions} from 'react-native';
+import {Dimensions, SafeAreaView} from 'react-native';
+
+import {ThemeProvider} from 'styled-components';
 
 import Routes from './src/configuration/routes';
 
-import {ThemeProvider} from 'styled-components';
+import {Provider} from 'react-redux';
+
+import {store} from './src/configuration/store';
+
+import FlashMessage from 'react-native-flash-message';
 
 import theme from './src/configuration/theme';
 
 const App = () => {
   return (
-    <SafeAreaView
-      style={{
-        width: '100%',
-        height: Dimensions.get('window').height,
-      }}>
-      <ThemeProvider theme={theme}>
-        <Routes />
-      </ThemeProvider>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView
+        style={{
+          width: '100%',
+          height: Dimensions.get('window').height,
+        }}>
+        <ThemeProvider theme={theme}>
+          <Routes />
+          <FlashMessage position={'center'} />
+        </ThemeProvider>
+      </SafeAreaView>
+    </Provider>
   );
 };
 
