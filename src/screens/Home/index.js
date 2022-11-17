@@ -8,15 +8,21 @@ import styled from 'styled-components';
 
 const Home = () => {
   const [datas, setDatas] = useState([]);
+  const [currentHumid, setCurrentHumid] = useState([]);
+  const [currentPrecipitation, setCurrentPrecipitation] = useState([]);
   const navigation = useNavigation();
 
   useEffect(() => {
 
     const getDatas = async () => {
       try {
-        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=48.91&longitude=2.20&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m')
-        setDatas(result.data.hourly);
-        console.log('result', result.data.hourly);
+        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&timezone=GMT&hourly=relativehumidity_2m,precipitation&current_weather=true')
+        setDatas(result.data.current_weather);
+        console.log(result.data);
+        const index = result.data.hourly.time.indexOf(result.data.current_weather.time);
+        setCurrentHumid(result.data.hourly.relativehumidity_2m[index]);
+        setCurrentPrecipitation(result.data.hourly.precipitation[index])
+        console.log(currentHumid);
       } catch (error) {
         console.log(error)
       }
@@ -33,30 +39,25 @@ const Home = () => {
       <Container>
 
         <Text>T°C</Text>
+        <Title>{datas.temperature}</Title>
         <Content>
           <Box>
             <Title>Wind</Title>
+            <Title>{datas.windspeed}</Title>
           </Box>
 
           <Box>
             <Title>Humidity</Title>
+            <Title>{currentHumid}</Title>
           </Box>
 
           <Box>
             <Title>Chance of rain</Title>
+            <Title>{currentPrecipitation}</Title>
           </Box>
         </Content>
 
       </Container>
-      {/* {datas.map((data) => {
-        return (
-          <View>
-            <Text>
-              {data.time}
-            </Text>
-          </View>
-        )
-      })} */}
     </View>
   );
 }

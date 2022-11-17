@@ -13,7 +13,6 @@ const Prevision = () => {
       try {
         const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&timezone=GMT&daily=temperature_2m_max,temperature_2m_min')
         setDatas(result.data.daily);
-        console.log('result', result.data.daily);
       } catch (error) {
         console.log(error)
       }
