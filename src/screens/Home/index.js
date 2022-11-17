@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import WeatherCode from '../../components/WeatherCode';
 
 import styled from 'styled-components';
+import MeteoRedux from '../../components/meteoRedux';
+
 
 const Home = () => {
   const [datas, setDatas] = useState([]);
@@ -59,8 +61,8 @@ const Home = () => {
             <Title>{currentPrecipitation}%</Title>
           </Box>
         </Content>
-
       </Container>
+      <MeteoRedux />
     </View>
   );
 }
