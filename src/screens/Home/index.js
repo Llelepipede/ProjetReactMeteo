@@ -14,7 +14,7 @@ const Home = () => {
 
     const getDatas = async () => {
       try {
-        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&hourly=temperature_2m')
+        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=48.91&longitude=2.20&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m')
         setDatas(result.data.hourly);
         console.log('result', result.data.hourly);
       } catch (error) {
@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <View>
       <Text>Today</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Prevision')}>
+      <TouchableOpacity onPress={() => navigation.navigate('HomeStack', { screen: 'Prevision' })}>
         <Text>7 days</Text>
       </TouchableOpacity>
       <Container>

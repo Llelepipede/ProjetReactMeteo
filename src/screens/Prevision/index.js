@@ -23,14 +23,14 @@ const Prevision = () => {
 
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text>Back</Text>
       </TouchableOpacity>
       <Text>Next 7 days</Text>
       <Text>{datas.time}</Text>
       <Text>{datas.temperature_2m_max}°C</Text>
       <Text>{datas.temperature_2m_min}°C</Text>
-    </View>
+    </View >
   );
 }
 
