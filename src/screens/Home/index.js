@@ -14,8 +14,7 @@ const Home = () => {
 
     const getDatas = async () => {
       try {
-        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,relativehumidity_2m,windspeed_10m')
-        // Berlin 
+        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&hourly=temperature_2m')
         setDatas(result.data.hourly);
         console.log('result', result.data.hourly);
       } catch (error) {
