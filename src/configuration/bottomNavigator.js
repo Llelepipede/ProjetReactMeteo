@@ -5,8 +5,8 @@ import { View, Text } from "react-native";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import Favorite from '../screens/Favorite';
-import Home from '../screens/Home';
 import Position from '../screens/Position';
+import HomeStack from './homeStack';
 
 // import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
 
@@ -27,7 +27,7 @@ const BottomNavigator = () => {
 
     <BottomStack.Navigator>
       <BottomStack.Screen name="Position" component={Position} />
-      <BottomStack.Screen name="Home" component={Home} />
+      <BottomStack.Screen name="HomeStack" component={HomeStack} />
       <BottomStack.Screen name="Favorite" component={Favorite} />
     </BottomStack.Navigator >
   );

@@ -18,7 +18,6 @@ const Routes = props => {
       <RootStack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'Login'}>
         <RootStack.Screen name="Login" component={Login} />
         <RootStack.Screen name="BottomNavigator" component={BottomNavigator} />
-        <RootStack.Screen name="Prevision" component={Prevision} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

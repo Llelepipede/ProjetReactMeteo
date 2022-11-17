@@ -8,16 +8,21 @@ import styled from 'styled-components';
 
 const Home = () => {
   const [datas, setDatas] = useState([]);
+  const [currentHumid, setCurrentHumid] = useState([]);
+  const [currentPrecipitation, setCurrentPrecipitation] = useState([]);
   const navigation = useNavigation();
 
   useEffect(() => {
 
     const getDatas = async () => {
       try {
-        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,relativehumidity_2m,windspeed_10m')
-        // Berlin 
-        setDatas(result.data.hourly);
-        console.log('result', result.data.hourly);
+        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&timezone=GMT&hourly=relativehumidity_2m,precipitation&current_weather=true')
+        setDatas(result.data.current_weather);
+        console.log(result.data);
+        const index = result.data.hourly.time.indexOf(result.data.current_weather.time);
+        setCurrentHumid(result.data.hourly.relativehumidity_2m[index]);
+        setCurrentPrecipitation(result.data.hourly.precipitation[index])
+        console.log(currentHumid);
       } catch (error) {
         console.log(error)
       }
@@ -28,36 +33,31 @@ const Home = () => {
   return (
     <View>
       <Text>Today</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Prevision')}>
+      <TouchableOpacity onPress={() => navigation.navigate('HomeStack', { screen: 'Prevision' })}>
         <Text>7 days</Text>
       </TouchableOpacity>
       <Container>
 
         <Text>T°C</Text>
+        <Title>{datas.temperature}</Title>
         <Content>
           <Box>
             <Title>Wind</Title>
+            <Title>{datas.windspeed}</Title>
           </Box>
 
           <Box>
             <Title>Humidity</Title>
+            <Title>{currentHumid}</Title>
           </Box>
 
           <Box>
             <Title>Chance of rain</Title>
+            <Title>{currentPrecipitation}</Title>
           </Box>
         </Content>
 
       </Container>
-      {/* {datas.map((data) => {
-        return (
-          <View>
-            <Text>
-              {data.time}
-            </Text>
-          </View>
-        )
-      })} */}
     </View>
   );
 }
