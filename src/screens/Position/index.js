@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Text, View } from 'react-native';
 
+import GetLocation from '../../components/GetLocation';
+
 const Position = () => {
+
+  useEffect(() => {
+    console.log(GetLocation());
+  })
+
   return (
-    <View>
-      <Text>Position</Text>
-    </View>
+    <GetLocation />
   );
 }
 
