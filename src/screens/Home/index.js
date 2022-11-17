@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+import WeatherCode from '../../components/WeatherCode';
 
 import styled from 'styled-components';
 
 const Home = () => {
   const [datas, setDatas] = useState([]);
-  const [currentHumid, setCurrentHumid] = useState([]);
-  const [currentPrecipitation, setCurrentPrecipitation] = useState([]);
+  const [currentHumid, setCurrentHumid] = useState("");
+  const [currentPrecipitation, setCurrentPrecipitation] = useState("");
+  const [currentLogo, setCurrentLogo] = useState([]);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -18,11 +21,11 @@ const Home = () => {
       try {
         const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&timezone=GMT&hourly=relativehumidity_2m,precipitation&current_weather=true')
         setDatas(result.data.current_weather);
-        console.log(result.data);
         const index = result.data.hourly.time.indexOf(result.data.current_weather.time);
         setCurrentHumid(result.data.hourly.relativehumidity_2m[index]);
-        setCurrentPrecipitation(result.data.hourly.precipitation[index])
-        console.log(currentHumid);
+        setCurrentPrecipitation(result.data.hourly.precipitation[index]);
+        setCurrentLogo(WeatherCode(result.data.current_weather.weathercode));
+        console.log(currentLogo);
       } catch (error) {
         console.log(error)
       }
@@ -37,23 +40,23 @@ const Home = () => {
         <Text>7 days</Text>
       </TouchableOpacity>
       <Container>
-
+        <Image source={currentLogo} />
         <Text>T°C</Text>
         <Title>{datas.temperature}</Title>
         <Content>
           <Box>
             <Title>Wind</Title>
-            <Title>{datas.windspeed}</Title>
+            <Title>{datas.windspeed} km/h</Title>
           </Box>
 
           <Box>
             <Title>Humidity</Title>
-            <Title>{currentHumid}</Title>
+            <Title>{currentHumid} %</Title>
           </Box>
 
           <Box>
             <Title>Chance of rain</Title>
-            <Title>{currentPrecipitation}</Title>
+            <Title>{currentPrecipitation}%</Title>
           </Box>
         </Content>
 
