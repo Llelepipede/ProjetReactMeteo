@@ -10,6 +10,10 @@ import theme from './src/configuration/theme';
 
 import styled from 'styled-components';
 
+import {Provider} from 'react-redux';
+
+import {store} from './src/configuration/store';
+
 const App = () => {
   return (
     <SafeAreaView
@@ -21,6 +25,11 @@ const App = () => {
         <Routes />
       </ThemeProvider>
     </SafeAreaView>
+    /*
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+    */
   );
 };
 
