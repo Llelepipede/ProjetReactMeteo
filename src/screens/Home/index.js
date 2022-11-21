@@ -41,7 +41,7 @@ const Home = () => {
       </TouchableOpacity>
       <Container>
         <Image source={currentLogo} />
-        <Text>T°C</Text>
+        <Title>T°C</Title>
         <Title>{datas.temperature}</Title>
         <Content>
           <Box>
