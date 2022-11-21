@@ -20,6 +20,6 @@ const Getlocation = () => {
       },
     );
   }
-}
+};
 
 export default Getlocation;

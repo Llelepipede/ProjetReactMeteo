@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-import { Text, TouchableOpacity, View, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {Text, TouchableOpacity, View, FlatList} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const Prevision = () => {
   const [datas, setDatas] = useState([]);
@@ -12,13 +12,15 @@ const Prevision = () => {
   useEffect(() => {
     const getDatas = async () => {
       try {
-        const result = await axios.get('https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&timezone=GMT&daily=temperature_2m_max,temperature_2m_min')
+        const result = await axios.get(
+          'https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&timezone=GMT&daily=temperature_2m_max,temperature_2m_min',
+        );
         setDatas(result.data.daily);
         console.log('prevision', result.data.daily);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
+    };
     getDatas();
   }, []);
 
@@ -45,9 +47,8 @@ const Prevision = () => {
         keyExtractor={item => item.id}
 
       /> */}
-
-    </View >
+    </View>
   );
-}
+};
 
 export default Prevision;

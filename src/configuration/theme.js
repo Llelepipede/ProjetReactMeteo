@@ -1,5 +1,4 @@
 const theme = {
-
   // Color Palette
 
   // DARK MODE
@@ -11,7 +10,6 @@ const theme = {
 
   // LIGHT MODE
   whiteColor: '#FFFFFF',
-
-}
+};
 
 export default theme;

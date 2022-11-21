@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../screens/Home';
 import Prevision from '../screens/Prevision';
@@ -11,10 +11,10 @@ const HomeStack = () => {
 
   return (
     <RootStack.Navigator>
-      <RootStack.Screen name='Home' component={Home} />
-      <RootStack.Screen name='Prevision' component={Prevision} />
+      <RootStack.Screen name="Home" component={Home} />
+      <RootStack.Screen name="Prevision" component={Prevision} />
     </RootStack.Navigator>
   );
-}
+};
 
 export default HomeStack;

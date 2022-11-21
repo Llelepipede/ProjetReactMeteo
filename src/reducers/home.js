@@ -1,8 +1,8 @@
-import { STORE_METEO } from "../actions/home";
-
+import {STORE_METEO} from '../actions/home';
 
 const initialState = {
   value: [],
+  current: {},
 };
 
 export default (state = initialState, action) => {
@@ -10,7 +10,8 @@ export default (state = initialState, action) => {
     case STORE_METEO:
       return {
         ...state,
-        value: [...state.value, ...action.payload],
+        // value: [...state.value, action.payload], // pour les favoris
+        current: action.payload,
       };
     default:
       return state;
