@@ -19,6 +19,7 @@ const BottomNavigator = () => {
   return (
     <BottomStack.Navigator
       screenOptions={({ route }) => ({
+        tabBarLabel: () => { return null },
         headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let icon;
