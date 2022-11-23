@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import WeatherCode from '../../components/WeatherCode';
 
@@ -40,7 +40,7 @@ const Home = () => {
     <View>
       <Text>Today</Text>
       <TouchableOpacity
-        onPress={() => navigation.navigate('HomeStack', {screen: 'Prevision'})}>
+        onPress={() => navigation.navigate('HomeStack', { screen: 'Prevision' })}>
         <Text>7 days</Text>
       </TouchableOpacity>
       <Container>

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {Dimensions, SafeAreaView} from 'react-native';
+import { Dimensions, SafeAreaView } from 'react-native';
 
-import {ThemeProvider} from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 
 import Routes from './src/configuration/routes';
 
@@ -10,9 +10,11 @@ import theme from './src/configuration/theme';
 
 import styled from 'styled-components';
 
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 
-import {store} from './src/configuration/store';
+import { store } from './src/configuration/store';
+
+// import GlobalStyle from './src/configuration/globalStyles';
 
 const App = () => {
   return (
@@ -22,6 +24,7 @@ const App = () => {
         height: Dimensions.get('window').height,
       }}>
       <ThemeProvider theme={theme}>
+        {/* <GlobalStyle /> */}
         <Routes />
       </ThemeProvider>
     </SafeAreaView>
