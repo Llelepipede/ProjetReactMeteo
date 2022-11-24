@@ -11,6 +11,8 @@ const Prevision = () => {
   const [prevision, setPrevision] = useState([]);
   const navigation = useNavigation();
 
+  const array = [];
+
   useEffect(() => {
     const getDatas = async () => {
       try {
@@ -18,7 +20,7 @@ const Prevision = () => {
           'https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&timezone=GMT&daily=temperature_2m_max,temperature_2m_min,weathercode',
         );
         setDatas(result.data.daily);
-        console.log('prevision', result.data.daily);
+        // console.log('prevision', result.data.daily);
       } catch (error) {
         console.log(error);
       }
@@ -32,20 +34,17 @@ const Prevision = () => {
         <Title>‹ Back</Title>
       </TouchableOpacity>
       <Subtitle>Next 7 days</Subtitle>
-      {/* <Text>{datas.time}</Text>
-      <Text>{datas.temperature_2m_max}°C</Text>
-      <Text>{datas.temperature_2m_min}°C</Text>
-      <Text>{datas.weathercode}</Text> */}
 
       {/* To do: un tableau avec les 4 valeurs, date du jour, temperature_2m_max, temperature_2m_min et weathercode */}
 
       <FlatList
-        data={datas.temperature_2m_max}
+        data={datas}
         renderItem={({ item }) => {
-          // console.log(item)
+          console.log('item', item.temperature_2m_max)
           return (
             <View>
-              <Text>{item}</Text>
+              <Title>{item.temperature_2m_max}</Title>
+              <Title>{item.temperature_2m_min}</Title>
             </View>
           )
         }}

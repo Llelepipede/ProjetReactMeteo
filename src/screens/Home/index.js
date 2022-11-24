@@ -28,7 +28,7 @@ const Home = () => {
           'https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&timezone=GMT&hourly=relativehumidity_2m,precipitation,temperature_2m,weathercode&current_weather=true',
         );
         setDatas(result.data.current_weather);
-        console.log(result.data);
+        // console.log(result.data);
         const index = result.data.hourly.time.indexOf(
           result.data.current_weather.time,
         );
