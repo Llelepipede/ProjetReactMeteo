@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Text, TouchableOpacity, View, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import styled from 'styled-components';
+
 const Prevision = () => {
   const [datas, setDatas] = useState([]);
   const [prevision, setPrevision] = useState([]);
@@ -25,19 +27,22 @@ const Prevision = () => {
   }, []);
 
   return (
-    <View>
+    <Container>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>Back</Text>
+        <Title>‹ Back</Title>
       </TouchableOpacity>
-      <Text>Next 7 days</Text>
+      <Subtitle>Next 7 days</Subtitle>
       {/* <Text>{datas.time}</Text>
       <Text>{datas.temperature_2m_max}°C</Text>
       <Text>{datas.temperature_2m_min}°C</Text>
       <Text>{datas.weathercode}</Text> */}
+
+      {/* To do: un tableau avec les 4 valeurs, date du jour, temperature_2m_max, temperature_2m_min et weathercode */}
+
       <FlatList
         data={datas.temperature_2m_max}
         renderItem={({ item }) => {
-          console.log(item)
+          // console.log(item)
           return (
             <View>
               <Text>{item}</Text>
@@ -47,8 +52,29 @@ const Prevision = () => {
         keyExtractor={item => item.id}
 
       />
-    </View>
+      {/* {datas.map((data) => {
+        return (
+          <Text>{data.daily.temperature_2m_max}</Text>
+        )
+      })} */}
+    </Container>
   );
 };
+
+const Container = styled.View`
+  background-color: ${props => props.theme.blackColor};
+  height: 100%;
+`
+const Title = styled.Text`
+  color: ${props => props.theme.lightGreyColor};
+  font-size: 14px;
+  margin: 4%;
+`
+const Subtitle = styled.Text`
+  color: ${props => props.theme.lightGreyColor};
+  font-weight: bold;
+  font-size: 14px;
+  margin: 4%;
+`
 
 export default Prevision;

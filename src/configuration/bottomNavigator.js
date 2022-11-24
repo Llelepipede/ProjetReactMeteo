@@ -10,6 +10,8 @@ import Favorite from '../screens/Favorite';
 import Home from '../screens/Home';
 import Position from '../screens/Position';
 import Settings from '../screens/Settings';
+import Prevision from '../screens/Prevision';
+import HomeStack from './homeStack';
 
 
 const BottomNavigator = () => {
@@ -38,9 +40,10 @@ const BottomNavigator = () => {
       })}
     >
       <BottomStack.Screen name="Position" component={Position} />
-      <BottomStack.Screen name="Home" component={Home} />
+      <BottomStack.Screen name="HomeStack" component={HomeStack} />
       <BottomStack.Screen name="Favorite" component={Favorite} />
       <BottomStack.Screen name="Settings" component={Settings} />
+      {/* <BottomStack.Screen name="Previrion" component={Prevision} /> */}
     </BottomStack.Navigator >
   );
 }
