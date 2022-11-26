@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import WeatherCode from '../../components/WeatherCode';
 import { storeMeteo, getMeteo } from '../../actions/home';
+import Getlocation from '../../components/GetLocation';
 
 import styled from 'styled-components';
 
@@ -28,6 +29,7 @@ const Home = () => {
     dispatch(getMeteo());
 
     setDatas(callAPI.current_weather);
+    console.log('UseEffect API: ', callAPI.current_weather);
 
     const index = callAPI.hourly.time.indexOf(
       callAPI.current_weather.time,
@@ -35,6 +37,9 @@ const Home = () => {
     setCurrentHumid(callAPI.hourly.relativehumidity_2m[index]);
     setCurrentPrecipitation(callAPI.hourly.precipitation[index]);
     setCurrentLogo(WeatherCode(callAPI.current_weather.weathercode));
+
+
+    console.log('getLocation', Getlocation())
 
   }, [dispatch]);
 

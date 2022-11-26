@@ -9,6 +9,7 @@ import Position from '../screens/Position';
 import Settings from '../screens/Settings';
 
 import Icon from 'react-native-vector-icons/Ionicons'
+import Prevision from '../screens/Prevision';
 
 const BottomNavigator = () => {
 
@@ -38,7 +39,8 @@ const BottomNavigator = () => {
       <BottomStack.Screen name="Position" component={Position} />
       <BottomStack.Screen name="HomeStack" component={HomeStack} />
       <BottomStack.Screen name="Favorite" component={Favorite} />
-      <BottomStack.Screen name="Settings" component={Settings} />
+      {/* <BottomStack.Screen name="Settings" component={Settings} /> */}
+      <BottomStack.Screen name="Prevision" component={Prevision} />
     </BottomStack.Navigator >
   );
 }
