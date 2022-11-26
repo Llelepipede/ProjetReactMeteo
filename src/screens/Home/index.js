@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import WeatherCode from '../../components/WeatherCode';
 import { storeMeteo, getMeteo } from '../../actions/home';
 import Getlocation from '../../components/GetLocation';
+import Capital from '../../assets/Capital/capital.json';
 
 import styled from 'styled-components';
 
@@ -20,16 +21,18 @@ const Home = () => {
   const callAPI = useSelector(state => state.meteo.value)
 
   const [datas, setDatas] = useState([]);
+  const [capital, setCapital] = useState([]);
+  const [currentCapital, setCurrentCapital] = useState({});
   const [currentHumid, setCurrentHumid] = useState('');
   const [currentPrecipitation, setCurrentPrecipitation] = useState('');
   const [currentLogo, setCurrentLogo] = useState([]);
   const navigation = useNavigation();
 
   useEffect(() => {
+    setCapital(Capital.capital);
     dispatch(getMeteo());
 
     setDatas(callAPI.current_weather);
-    console.log('UseEffect API: ', callAPI.current_weather);
 
     const index = callAPI.hourly.time.indexOf(
       callAPI.current_weather.time,
@@ -37,9 +40,6 @@ const Home = () => {
     setCurrentHumid(callAPI.hourly.relativehumidity_2m[index]);
     setCurrentPrecipitation(callAPI.hourly.precipitation[index]);
     setCurrentLogo(WeatherCode(callAPI.current_weather.weathercode));
-
-
-    console.log('getLocation', Getlocation())
 
   }, [dispatch]);
 
@@ -78,6 +78,14 @@ const Home = () => {
           </Box>
         </Content>
       </Contento>
+
+      {capital.map((item) => {
+        return (
+          <TouchableOpacity onPress={(item) => dispatch(({ ...item }))}>
+            <Title>{item.name}</Title>
+          </TouchableOpacity>
+        )
+      })}
     </Container>
   );
 };
@@ -119,7 +127,7 @@ const Content = styled.View`
 `
 const Box = styled.View`
   background-color: ${props => props.theme.darkGreyColor};
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   display: flex;
   align-items: center;
   justify-content: center;
