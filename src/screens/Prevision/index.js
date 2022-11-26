@@ -20,7 +20,17 @@ const Prevision = () => {
           'https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&timezone=GMT&daily=temperature_2m_max,temperature_2m_min,weathercode',
         );
         setDatas(result.data.daily);
-        // console.log('prevision', result.data.daily);
+
+        for (let i = 0; i < 7; i++) {
+          let newItem = {
+            date: result.data.daily.time[i],
+            temperature_min: result.data.daily.temperature_2m_min[i],
+            temperature_max: result.data.daily.temperature_2m_max[i],
+            weatherCode: result.data.daily.weathercode[i]
+          };
+          array.push(newItem);
+        }
+        setPrevision(array);
       } catch (error) {
         console.log(error);
       }
@@ -35,27 +45,17 @@ const Prevision = () => {
       </TouchableOpacity>
       <Subtitle>Next 7 days</Subtitle>
 
-      {/* To do: un tableau avec les 4 valeurs, date du jour, temperature_2m_max, temperature_2m_min et weathercode */}
-
-      <FlatList
-        data={datas}
-        renderItem={({ item }) => {
-          console.log('item', item.temperature_2m_max)
-          return (
-            <View>
-              <Title>{item.temperature_2m_max}</Title>
-              <Title>{item.temperature_2m_min}</Title>
-            </View>
-          )
-        }}
-        keyExtractor={item => item.id}
-
-      />
-      {/* {datas.map((data) => {
+      {prevision.map((item, key) => {
         return (
-          <Text>{data.daily.temperature_2m_max}</Text>
+          <Content key={item.id}>
+            <Date>{item.date}</Date>
+            <Temperature>
+              <TemperatureMax>{item.temperature_max}°</TemperatureMax>
+              <TemperatureMin>{item.temperature_min}°</TemperatureMin>
+            </Temperature>
+          </Content>
         )
-      })} */}
+      })}
     </Container>
   );
 };
@@ -66,14 +66,41 @@ const Container = styled.View`
 `
 const Title = styled.Text`
   color: ${props => props.theme.lightGreyColor};
-  font-size: 14px;
-  margin: 4%;
+  font-size: 16px;
+  margin: 4% 4% 2% 4%;
 `
 const Subtitle = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-weight: bold;
-  font-size: 14px;
+  font-size: 18px;
+  margin: 8% 4% 8% 4%;
+`
+const Content = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   margin: 4%;
+`
+const Date = styled.Text`
+  color: ${props => props.theme.lightGreyColor};
+  font-weight: bold;
+  font-size: 18px;
+`
+const Temperature = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+const TemperatureMax = styled.Text`
+  color: ${props => props.theme.whiteColor};
+  font-weight: bold;
+  font-size: 18px;
+`
+const TemperatureMin = styled.Text`
+  color: ${props => props.theme.lightGreyColor};
+  font-weight: bold;
+  font-size: 18px;
 `
 
 export default Prevision;

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import {showMessage} from 'react-native-flash-message';
+import { showMessage } from 'react-native-flash-message';
 
 export const STORE_METEO = 'STORE_METEO';
 export const getMeteo = () => dispatch => {
   axios({
     method: 'GET',
-    url: 'https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&timezone=GMT&daily=temperature_2m_max,temperature_2m_min',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&timezone=GMT&hourly=relativehumidity_2m,precipitation,temperature_2m,weathercode&current_weather=true',
   })
     .then(res => {
       console.log('LE RESULTAT', res.data);

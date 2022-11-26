@@ -1,18 +1,14 @@
 import React from 'react';
 
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { View, Text } from "react-native";
 
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
-import Icon from 'react-native-vector-icons/Ionicons'
-
 import Favorite from '../screens/Favorite';
-import Home from '../screens/Home';
+import HomeStack from './homeStack';
 import Position from '../screens/Position';
 import Settings from '../screens/Settings';
-import Prevision from '../screens/Prevision';
-import HomeStack from './homeStack';
 
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const BottomNavigator = () => {
 
@@ -43,7 +39,6 @@ const BottomNavigator = () => {
       <BottomStack.Screen name="HomeStack" component={HomeStack} />
       <BottomStack.Screen name="Favorite" component={Favorite} />
       <BottomStack.Screen name="Settings" component={Settings} />
-      {/* <BottomStack.Screen name="Previrion" component={Prevision} /> */}
     </BottomStack.Navigator >
   );
 }

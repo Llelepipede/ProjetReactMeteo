@@ -3,18 +3,21 @@ import axios from 'axios';
 
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import WeatherCode from '../../components/WeatherCode';
+import { storeMeteo, getMeteo } from '../../actions/home';
 
 import styled from 'styled-components';
-
-// import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import Wind from '../../assets/weather/wind.png';
 import Rain from '../../assets/weather/rain.png';
 import Humidity from '../../assets/weather/humidity.png';
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const callAPI = useSelector(state => state.meteo.value)
+
   const [datas, setDatas] = useState([]);
   const [currentHumid, setCurrentHumid] = useState('');
   const [currentPrecipitation, setCurrentPrecipitation] = useState('');
@@ -22,29 +25,21 @@ const Home = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    const getDatas = async () => {
-      try {
-        const result = await axios.get(
-          'https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&timezone=GMT&hourly=relativehumidity_2m,precipitation,temperature_2m,weathercode&current_weather=true',
-        );
-        setDatas(result.data.current_weather);
-        // console.log(result.data);
-        const index = result.data.hourly.time.indexOf(
-          result.data.current_weather.time,
-        );
-        setCurrentHumid(result.data.hourly.relativehumidity_2m[index]);
-        setCurrentPrecipitation(result.data.hourly.precipitation[index]);
-        setCurrentLogo(WeatherCode(result.data.current_weather.weathercode));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getDatas();
-  }, []);
+    dispatch(getMeteo());
+
+    setDatas(callAPI.current_weather);
+
+    const index = callAPI.hourly.time.indexOf(
+      callAPI.current_weather.time,
+    );
+    setCurrentHumid(callAPI.hourly.relativehumidity_2m[index]);
+    setCurrentPrecipitation(callAPI.hourly.precipitation[index]);
+    setCurrentLogo(WeatherCode(callAPI.current_weather.weathercode));
+
+  }, [dispatch]);
 
   return (
     <Container>
-      {/* <Button title='My Position' /> */}
       <Tttt>
         <Textii>Today</Textii>
         <TouchableOpacity
@@ -120,7 +115,6 @@ const Content = styled.View`
 const Box = styled.View`
   background-color: ${props => props.theme.darkGreyColor};
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
