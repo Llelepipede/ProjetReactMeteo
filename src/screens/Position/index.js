@@ -16,7 +16,10 @@
 
 import React, { useState } from 'react';
 
-import MapView, { Callout, Circle, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, {
+  Callout, Circle, Marker,
+  // PROVIDER_GOOGLE 
+} from 'react-native-maps';
 
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
@@ -38,20 +41,7 @@ const Position = () => {
         }}
       // provider={PROVIDER_GOOGLE}
       >
-        <Marker
-          coordinate={pin}
-          pinColor="black"
-          draggable={true}
-          onDragStart={(e) => {
-            console.log('Drag start', e.nativeEvent.coordinates)
-          }}
-          onDragEnd={(e) => {
-            setPin({
-              latitude: e.nativeEvent.coordinate.latitude,
-              longitude: e.nativeEvent.coordinate.longitude
-            })
-          }}
-        >
+        <Marker coordinate={pin} pinColor="black">
           <Callout>
             <Text>I'm here</Text>
           </Callout>
