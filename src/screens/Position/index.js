@@ -22,8 +22,8 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 const Position = () => {
   const [pin, setPin] = useState({
-    latitude: 37.78825,
-    longitude: -122.4324
+    latitude: 48.85,
+    longitude: 2.35
   })
 
   return (
@@ -31,8 +31,8 @@ const Position = () => {
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: 48.85,
+          longitude: 2.35,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
