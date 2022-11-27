@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 
-const MeteoCard = props => {
+const MeteoCard = (props) => {
   return (
     <View>
       <Text>{props.latitude}</Text>

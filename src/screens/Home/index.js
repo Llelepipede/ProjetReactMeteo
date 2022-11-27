@@ -45,20 +45,25 @@ const Home = () => {
 
   return (
     <Container>
-      <Tttt>
-        <Textii>Today</Textii>
+
+      <Button>
+        <ButtonContainer>Paris</ButtonContainer>
+      </Button>
+
+      <BoxContainer>
+        <TextContainer>Today</TextContainer>
         <TouchableOpacity
           onPress={() => navigation.navigate('HomeStack', { screen: 'Prevision' })}>
-          <Textii>7 days ›</Textii>
+          <TextContainer>7 days ›</TextContainer>
         </TouchableOpacity>
-      </Tttt>
+      </BoxContainer>
 
-      <Contento>
-        <Cont>
+      <DetailsContainer>
+        <FirstContent>
           <Image source={currentLogo} />
           <Azer>{datas.temperature}°</Azer>
-        </Cont>
-        <Content>
+        </FirstContent>
+        <SecondContent>
           <Box>
             <Image source={Wind} />
             <Title>Wind</Title>
@@ -76,16 +81,16 @@ const Home = () => {
             <Title>Chance of rain</Title>
             <Description>{currentPrecipitation}mm</Description>
           </Box>
-        </Content>
-      </Contento>
+        </SecondContent>
+      </DetailsContainer>
 
-      {capital.map((item) => {
+      {/* {capital.map((item) => {
         return (
           <TouchableOpacity onPress={(item) => dispatch(({ ...item }))}>
             <Title>{item.name}</Title>
           </TouchableOpacity>
         )
-      })}
+      })} */}
     </Container>
   );
 };
@@ -94,33 +99,48 @@ const Container = styled.View`
   background-color: ${props => props.theme.blackColor};
   height: 100%;
 `
-const Tttt = styled.View`
+const Button = styled.View`
+  border: 1px solid ${props => props.theme.lightGreyColor};
+  margin: 6% 4% 10% 48%;
+  align-items: center;
+  border-radius: 6px;
+  padding: 16px;
+  width: 48%;
+  `
+const ButtonContainer = styled.Text`
+  color: ${props => props.theme.lightGreyColor};
+  font-weight: bold;
+  font-size: 16px;
+`
+const BoxContainer = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   margin: 4%;
 `
-const Textii = styled.Text`
+const TextContainer = styled.Text`
   color: ${props => props.theme.lightGreyColor};
+  font-weight: bold;
+  font-size: 18px;
 `
 const Azer = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-size: 60px;
 `
-const Contento = styled.View`
+const DetailsContainer = styled.View`
   background-color: ${props => props.theme.darkGreyColor};
   border-radius: 16px;
   height: 35%;
   margin: 4%;
 `;
-const Cont = styled.View`
+const FirstContent = styled.View`
 display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: space-evenly;
 `
-const Content = styled.View`
+const SecondContent = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
