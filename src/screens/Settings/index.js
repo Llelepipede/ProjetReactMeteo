@@ -1,12 +1,13 @@
 import React from 'react';
+
 import { Text, View } from 'react-native';
 
-const MeteoCard = (props) => {
+const Settings = () => {
   return (
     <View>
-      <Text>{props.latitude}</Text>
+      <Text>Settings</Text>
     </View>
   );
-};
+}
 
-export default MeteoCard;
+export default Settings;

@@ -1,96 +1,171 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import WeatherCode from '../../components/WeatherCode';
+import { storeMeteo, getMeteo } from '../../actions/home';
+import Getlocation from '../../components/GetLocation';
+import Capital from '../../assets/Capital/capital.json';
 
 import styled from 'styled-components';
 
+import Wind from '../../assets/weather/wind.png';
+import Rain from '../../assets/weather/rain.png';
+import Humidity from '../../assets/weather/humidity.png';
+
 const Home = () => {
+  const dispatch = useDispatch();
+  const callAPI = useSelector(state => state.meteo.value)
+
   const [datas, setDatas] = useState([]);
+  const [capital, setCapital] = useState([]);
+  const [currentCapital, setCurrentCapital] = useState({});
   const [currentHumid, setCurrentHumid] = useState('');
   const [currentPrecipitation, setCurrentPrecipitation] = useState('');
   const [currentLogo, setCurrentLogo] = useState([]);
   const navigation = useNavigation();
 
   useEffect(() => {
-    const getDatas = async () => {
-      try {
-        const result = await axios.get(
-          'https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&timezone=GMT&hourly=relativehumidity_2m,precipitation&current_weather=true',
-        );
-        setDatas(result.data.current_weather);
-        const index = result.data.hourly.time.indexOf(
-          result.data.current_weather.time,
-        );
-        setCurrentHumid(result.data.hourly.relativehumidity_2m[index]);
-        setCurrentPrecipitation(result.data.hourly.precipitation[index]);
-        setCurrentLogo(WeatherCode(result.data.current_weather.weathercode));
-        console.log(currentLogo);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getDatas();
-  }, []);
+    setCapital(Capital.capital);
+    dispatch(getMeteo());
+
+    setDatas(callAPI.current_weather);
+
+    const index = callAPI.hourly.time.indexOf(
+      callAPI.current_weather.time,
+    );
+    setCurrentHumid(callAPI.hourly.relativehumidity_2m[index]);
+    setCurrentPrecipitation(callAPI.hourly.precipitation[index]);
+    setCurrentLogo(WeatherCode(callAPI.current_weather.weathercode));
+
+  }, [dispatch]);
 
   return (
-    <View>
-      <Text>Today</Text>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('HomeStack', {screen: 'Prevision'})}>
-        <Text>7 days</Text>
-      </TouchableOpacity>
-      <Container>
-        <Image source={currentLogo} />
-        <Title>T°C</Title>
-        <Title>{datas.temperature}</Title>
-        <Content>
+    <Container>
+
+      <Button>
+        <ButtonContainer>Paris</ButtonContainer>
+      </Button>
+
+      <BoxContainer>
+        <TextContainer>Today</TextContainer>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('HomeStack', { screen: 'Prevision' })}>
+          <TextContainer>7 days ›</TextContainer>
+        </TouchableOpacity>
+      </BoxContainer>
+
+      <DetailsContainer>
+        <FirstContent>
+          <Image source={currentLogo} />
+          <Azer>{datas.temperature}°</Azer>
+        </FirstContent>
+        <SecondContent>
           <Box>
+            <Image source={Wind} />
             <Title>Wind</Title>
-            <Title>{datas.windspeed} km/h</Title>
+            <Description>{datas.windspeed} Km/h</Description>
           </Box>
 
           <Box>
+            <Image source={Humidity} />
             <Title>Humidity</Title>
-            <Title>{currentHumid} %</Title>
+            <Description>{currentHumid}%</Description>
           </Box>
 
           <Box>
+            <Image source={Rain} />
             <Title>Chance of rain</Title>
-            <Title>{currentPrecipitation}%</Title>
+            <Description>{currentPrecipitation}mm</Description>
           </Box>
-        </Content>
-      </Container>
-    </View>
+        </SecondContent>
+      </DetailsContainer>
+
+      {/* {capital.map((item) => {
+        return (
+          <TouchableOpacity onPress={(item) => dispatch(({ ...item }))}>
+            <Title>{item.name}</Title>
+          </TouchableOpacity>
+        )
+      })} */}
+    </Container>
   );
 };
 
 const Container = styled.View`
+  background-color: ${props => props.theme.blackColor};
+  height: 100%;
+`
+const Button = styled.View`
+  border: 1px solid ${props => props.theme.lightGreyColor};
+  margin: 6% 4% 10% 48%;
+  align-items: center;
+  border-radius: 6px;
+  padding: 16px;
+  width: 48%;
+  `
+const ButtonContainer = styled.Text`
+  color: ${props => props.theme.lightGreyColor};
+  font-weight: bold;
+  font-size: 16px;
+`
+const BoxContainer = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 4%;
+`
+const TextContainer = styled.Text`
+  color: ${props => props.theme.lightGreyColor};
+  font-weight: bold;
+  font-size: 18px;
+`
+const Azer = styled.Text`
+  color: ${props => props.theme.lightGreyColor};
+  font-size: 60px;
+`
+const DetailsContainer = styled.View`
   background-color: ${props => props.theme.darkGreyColor};
   border-radius: 16px;
-  height: 50%;
+  height: 35%;
   margin: 4%;
 `;
-const Content = styled.View`
+const FirstContent = styled.View`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-evenly;
+`
+const SecondContent = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 25%;
-`;
+`
 const Box = styled.View`
-  background-color: ${props => props.theme.greyColor};
+  background-color: ${props => props.theme.darkGreyColor};
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
   height: 80px;
-  margin: 6px;
   width: 26%;
-`;
+  margin: 2%;
+`
 const Title = styled.Text`
   color: ${props => props.theme.lightGreyColor};
-  text-align: center;
+  margin: 4% 0 4% 0;
+  font-weight: bold;
   font-size: 10px;
-`;
+`
+const Description = styled.Text`
+  color: ${props => props.theme.whiteColor};
+  font-weight: bold;
+  font-size: 12px;
+`
 
 export default Home;
