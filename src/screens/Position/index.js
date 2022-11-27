@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 
 import GetLocation from '../../components/GetLocation';
 
@@ -9,7 +9,7 @@ const Position = () => {
     console.log(GetLocation());
   });
 
-  return <GetLocation />;
+  return <GetLocation />
 };
 
 export default Position;

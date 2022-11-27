@@ -16,10 +16,11 @@ import Wind from '../../assets/weather/wind.png';
 import Rain from '../../assets/weather/rain.png';
 import Humidity from '../../assets/weather/humidity.png';
 
+import Geolocation from '@react-native-community/geolocation';
+
 const Home = () => {
   const dispatch = useDispatch();
   const callAPI = useSelector(state => state.meteo.value)
-
   const [datas, setDatas] = useState([]);
   const [capital, setCapital] = useState([]);
   const [currentCapital, setCurrentCapital] = useState({});
@@ -29,9 +30,30 @@ const Home = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
+    console.log('callAPI', callAPI)
+
+    Geolocation.setRNConfiguration({
+      authorizationLevel: 'always',
+      skipPermissionRequests: false
+    });
+
+    Geolocation.requestAuthorization(() => {
+      console.log('success')
+    },
+      (err) => {
+        console.log(err)
+      }
+    )
+
     setCapital(Capital.capital);
     dispatch(getMeteo());
 
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!callAPI.hourly?.time) {
+      return
+    }
     setDatas(callAPI.current_weather);
 
     const index = callAPI.hourly.time.indexOf(
@@ -40,8 +62,7 @@ const Home = () => {
     setCurrentHumid(callAPI.hourly.relativehumidity_2m[index]);
     setCurrentPrecipitation(callAPI.hourly.precipitation[index]);
     setCurrentLogo(WeatherCode(callAPI.current_weather.weathercode));
-
-  }, [dispatch]);
+  }, [callAPI])
 
   return (
     <Container>

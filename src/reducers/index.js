@@ -5,7 +5,7 @@ import meteo from './home';
 import prevision from './prevision';
 
 export default combineReducers({
+  capital,
   meteo,
   prevision,
-  capital,
 });
