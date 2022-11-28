@@ -1,4 +1,4 @@
-import { STORE_PREVISION } from '../actions/prevision';
+import {STORE_PREVISION} from '../actions/prevision';
 
 const initialState = {
   value: [],

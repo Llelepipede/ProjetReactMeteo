@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text, View } from 'react-native';
+import {Text, View} from 'react-native';
 
 const Settings = () => {
   return (
@@ -8,6 +8,6 @@ const Settings = () => {
       <Text>Settings</Text>
     </View>
   );
-}
+};
 
 export default Settings;

@@ -1,4 +1,4 @@
-import { STORE_CAPITAL } from '../actions/capital';
+import {STORE_CAPITAL} from '../actions/capital';
 
 const initialState = {
   value: 0,

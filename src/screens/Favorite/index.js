@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text, View } from 'react-native';
+import {Text, View} from 'react-native';
 
 const Favorite = () => {
   return (
@@ -8,6 +8,6 @@ const Favorite = () => {
       <Text>Favorite</Text>
     </View>
   );
-}
+};
 
 export default Favorite;

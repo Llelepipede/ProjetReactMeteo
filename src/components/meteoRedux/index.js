@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { Text } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components';
-import { getMeteo } from '../../actions/home';
-import MeteoCard from './card';
+import {getMeteo} from '../../actions/home';
+// import MeteoCard from './card';
 
 const MeteoRedux = () => {
   const dispatch = useDispatch();
@@ -17,9 +17,9 @@ const MeteoRedux = () => {
   return (
     <ScrollViewMeteo>
       <Text>Meteo Redux</Text>
-      {meteos.map((meteo) => {
+      {/* {meteos.map((meteo) => {
         return <MeteoCard key={meteo.id} latitude={meteo.latitude} />;
-      })}
+      })} */}
     </ScrollViewMeteo>
   );
 };

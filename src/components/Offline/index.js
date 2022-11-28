@@ -1,13 +1,11 @@
 import React from 'react';
+import {Text, SafeAreaView} from 'react-native';
 import Lottie from 'lottie-react-native';
-import {Text, SafeAreaView, View} from 'react-native';
 
 const Offline = () => {
   return (
     <SafeAreaView>
-      <View>
-      <Lottie source={require('../../assets/SplashAnimation/weather-splash.json')} autoPlay loop />
-      </View>
+      <Lottie source={require('../../assets/SplashScreen/weather-splash.json')} autoPlay loop />
     </SafeAreaView>
   );
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { showMessage } from 'react-native-flash-message';
+import {showMessage} from 'react-native-flash-message';
 import Getlocation from '../components/GetLocation';
 import Capital from '../assets/Capital/capital.json';
 
