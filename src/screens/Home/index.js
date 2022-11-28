@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {Image, Text, TouchableOpacity, Button} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import WeatherCode from '../../components/WeatherCode';
 
@@ -48,7 +48,9 @@ const Home = () => {
       <Tttt>
         <Textii>Today</Textii>
         <TouchableOpacity
-          onPress={() => navigation.navigate('HomeStack', { screen: 'Prevision' })}>
+          onPress={() =>
+            navigation.navigate('HomeStack', {screen: 'Prevision'})
+          }>
           <Textii>7 days ›</Textii>
         </TouchableOpacity>
       </Tttt>
@@ -78,6 +80,12 @@ const Home = () => {
           </Box>
         </Content>
       </Contento>
+
+      <Button
+        title="Deconnexion"
+        onPress={() => navigation.navigate('Login')}
+        color="#1976d2"
+      />
     </Container>
   );
 };
@@ -85,21 +93,21 @@ const Home = () => {
 const Container = styled.View`
   background-color: ${props => props.theme.blackColor};
   height: 100%;
-`
+`;
 const Tttt = styled.View`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   margin: 4%;
-`
+`;
 const Textii = styled.Text`
   color: ${props => props.theme.lightGreyColor};
-`
+`;
 const Azer = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-size: 60px;
-`
+`;
 const Contento = styled.View`
   background-color: ${props => props.theme.darkGreyColor};
   border-radius: 16px;
@@ -107,16 +115,16 @@ const Contento = styled.View`
   margin: 4%;
 `;
 const Cont = styled.View`
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-evenly;
-`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+`;
 const Content = styled.View`
   display: flex;
   flex-direction: row;
   justify-content: center;
-`
+`;
 const Box = styled.View`
   background-color: ${props => props.theme.darkGreyColor};
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -128,17 +136,17 @@ const Box = styled.View`
   height: 80px;
   width: 26%;
   margin: 2%;
-`
+`;
 const Title = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   margin: 4% 0 4% 0;
   font-weight: bold;
   font-size: 10px;
-`
+`;
 const Description = styled.Text`
   color: ${props => props.theme.whiteColor};
   font-weight: bold;
   font-size: 12px;
-`
+`;
 
 export default Home;
