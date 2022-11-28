@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { Dimensions, SafeAreaView } from 'react-native';
+import {Dimensions, SafeAreaView} from 'react-native';
 
-import { ThemeProvider } from 'styled-components';
+import {ThemeProvider} from 'styled-components';
 
 import Routes from './src/configuration/routes';
 
 import theme from './src/configuration/theme';
 
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 
-import { store } from './src/configuration/store';
+import {store} from './src/configuration/store';
 import FlashMessage from 'react-native-flash-message';
 
 const App = () => {

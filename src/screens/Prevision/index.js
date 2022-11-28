@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-import { Image, Text, TouchableOpacity, View, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
+import {Image, Text, TouchableOpacity, View, FlatList} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
 
 import WeatherCode from '../../components/WeatherCode';
-import { storePrevision, getPrevision } from '../../actions/prevision';
+import {storePrevision, getPrevision} from '../../actions/prevision';
 
 import styled from 'styled-components';
 
 const Prevision = () => {
   const dispatch = useDispatch();
-  const callAPI = useSelector(state => state.prevision.value)
+  const callAPI = useSelector(state => state.prevision.value);
 
   const [datas, setDatas] = useState([]);
   const [prevision, setPrevision] = useState([]);
@@ -51,7 +51,7 @@ const Prevision = () => {
               <TemperatureMin>{item.temperature_min}°</TemperatureMin>
             </Temperature>
           </Content>
-        )
+        );
       })}
     </Container>
   );
@@ -60,50 +60,50 @@ const Prevision = () => {
 const Container = styled.View`
   background-color: ${props => props.theme.blackColor};
   height: 100%;
-`
+`;
 const Title = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-size: 16px;
   margin: 4% 4% 2% 4%;
-`
+`;
 const Subtitle = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-weight: bold;
   font-size: 18px;
   margin: 8% 4% 8% 4%;
-`
+`;
 const Content = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin: 4%;
-`
+`;
 const Date = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-weight: bold;
   font-size: 18px;
-`
+`;
 const Picture = styled.Image`
   height: 40px;
   width: 40px;
-`
+`;
 const Temperature = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 25%;
-`
+`;
 const TemperatureMax = styled.Text`
   color: ${props => props.theme.whiteColor};
   font-weight: bold;
   font-size: 16px;
-`
+`;
 const TemperatureMin = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-weight: bold;
   font-size: 16px;
-`
+`;
 
 export default Prevision;

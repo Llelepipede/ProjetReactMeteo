@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { Text } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components';
-import { getMeteo } from '../../actions/home';
+import {getMeteo} from '../../actions/home';
 // import MeteoCard from './card';
 
 const MeteoRedux = () => {

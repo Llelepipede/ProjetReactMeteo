@@ -11,6 +11,7 @@ import {
   snow,
   heavySnow,
   heavySleet,
+  sleet,
 } from '../../assets/logo';
 
 const WeatherCode = weathercode => {

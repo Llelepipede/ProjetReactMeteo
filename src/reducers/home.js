@@ -1,4 +1,4 @@
-import { STORE_METEO } from '../actions/home';
+import {STORE_METEO} from '../actions/home';
 
 const initialState = {
   value: [],

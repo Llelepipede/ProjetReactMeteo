@@ -14,20 +14,22 @@
 
 // export default Position;
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import MapView, {
-  Callout, Circle, Marker,
-  // PROVIDER_GOOGLE 
+  Callout,
+  Circle,
+  Marker,
+  // PROVIDER_GOOGLE
 } from 'react-native-maps';
 
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import {StyleSheet, Text, View, Dimensions} from 'react-native';
 
 const Position = () => {
   const [pin, setPin] = useState({
     latitude: 48.85,
-    longitude: 2.35
-  })
+    longitude: 2.35,
+  });
 
   return (
     <View style={styles.container}>
@@ -39,20 +41,18 @@ const Position = () => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-      // provider={PROVIDER_GOOGLE}
+        // provider={PROVIDER_GOOGLE}
       >
         <Marker coordinate={pin} pinColor="black">
           <Callout>
             <Text>I'm here</Text>
           </Callout>
         </Marker>
-        <Circle center={pin}
-          radius={1000}
-        />
+        <Circle center={pin} radius={1000} />
       </MapView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   conainer: {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-  }
+  },
 });
 
 export default Position;
