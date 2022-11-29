@@ -1,4 +1,4 @@
-import {STORE_METEO} from '../actions/home';
+import {STORE_PREVISION} from '../actions/prevision';
 
 const initialState = {
   value: [],
@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case STORE_METEO:
+    case STORE_PREVISION:
       return {
         ...state,
         value: action.payload,

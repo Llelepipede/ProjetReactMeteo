@@ -1,15 +1,14 @@
 import React from 'react';
 
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {View, Text} from 'react-native';
 
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-
-import Icon from 'react-native-vector-icons/Ionicons';
-
 import Favorite from '../screens/Favorite';
-import Home from '../screens/Home';
+import HomeStack from './homeStack';
 import Position from '../screens/Position';
 import Settings from '../screens/Settings';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const BottomNavigator = () => {
   const BottomStack = createMaterialBottomTabNavigator();
@@ -37,7 +36,7 @@ const BottomNavigator = () => {
         },
       })}>
       <BottomStack.Screen name="Position" component={Position} />
-      <BottomStack.Screen name="Home" component={Home} />
+      <BottomStack.Screen name="HomeStack" component={HomeStack} />
       <BottomStack.Screen name="Favorite" component={Favorite} />
       <BottomStack.Screen name="Settings" component={Settings} />
     </BottomStack.Navigator>

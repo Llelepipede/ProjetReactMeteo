@@ -7,9 +7,12 @@ import styled from 'styled-components';
 import {useNavigation} from '@react-navigation/native';
 
 const Login = () => {
+  const [user, setUser] = useState('');
   const navigation = useNavigation();
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  // Let's go faire le login ?
 
   return (
     <Container>
