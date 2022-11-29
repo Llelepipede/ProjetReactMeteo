@@ -16,7 +16,7 @@ export const getPrevision = (coords) => dispatch => {
     url: `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&timezone=GMT&daily=temperature_2m_max,temperature_2m_min,weathercode`,
   })
     .then(res => {
-
+      console.log("notre call api", `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&timezone=GMT&daily=temperature_2m_max,temperature_2m_min,weathercode`)
       dispatch(storePrevision(res.data));
       showMessage({
         message: 'Success',

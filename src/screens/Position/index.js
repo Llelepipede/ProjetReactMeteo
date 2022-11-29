@@ -13,7 +13,8 @@ const Position = () => {
   const [pin, setPin] = useState({ latitude: 48.85, longitude: 2.35 });
 
   useEffect(() => {
-    dispatch(getLocation());
+    setPin(Geoloc.latitude, Geoloc.longitude);
+    console.log("pin in position: ", pin)
     console.log('geoloc ', Geoloc);
   }, [dispatch]);
 
@@ -22,13 +23,12 @@ const Position = () => {
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: 48.85,
-          longitude: 2.35,
+          latitude: Geoloc.latitude,
+          longitude: Geoloc.longitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
       >
-        {/* <Getlocation /> */}
         <Marker coordinate={pin} pinColor="black">
           <Callout>
             <Text>I'm here</Text>
