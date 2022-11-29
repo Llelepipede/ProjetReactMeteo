@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import WeatherCode from '../../components/WeatherCode';
 import { storeMeteo, getMeteo } from '../../actions/home';
-import Getlocation from '../../components/GetLocation';
 import Capital from '../../assets/Capital/capital.json';
 
 import styled from 'styled-components';
@@ -16,7 +15,7 @@ import Wind from '../../assets/weather/wind.png';
 import Rain from '../../assets/weather/rain.png';
 import Humidity from '../../assets/weather/humidity.png';
 
-import Geolocation from '@react-native-community/geolocation';
+// import Geolocation from '@react-native-community/geolocation';
 
 import { useTranslation } from "react-i18next";
 
@@ -27,6 +26,7 @@ const Home = () => {
 
   const dispatch = useDispatch();
   const callAPI = useSelector(state => state.meteo.value);
+  const Geoloc = useSelector(state => state.location.value);
   const [datas, setDatas] = useState([]);
   const [capital, setCapital] = useState([]);
   const [currentCapital, setCurrentCapital] = useState({});
@@ -37,23 +37,8 @@ const Home = () => {
 
   useEffect(() => {
     console.log('callAPI', callAPI);
-
-    Geolocation.setRNConfiguration({
-      authorizationLevel: 'always',
-      skipPermissionRequests: false,
-    });
-
-    Geolocation.requestAuthorization(
-      () => {
-        console.log('success');
-      },
-      err => {
-        console.log(err);
-      },
-    );
-
     setCapital(Capital.capital);
-    dispatch(getMeteo());
+    dispatch(getMeteo(Geoloc));
   }, [dispatch]);
 
   useEffect(() => {

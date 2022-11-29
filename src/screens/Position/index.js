@@ -1,35 +1,21 @@
-// import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-// import { Text, View } from 'react-native';
+import MapView, { Callout, Circle, Marker } from 'react-native-maps';
 
-// import GetLocation from '../../components/GetLocation';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
-// const Position = () => {
-//   useEffect(() => {
-//     console.log(GetLocation());
-//   });
-
-//   return <GetLocation />
-// };
-
-// export default Position;
-
-import React, {useState} from 'react';
-
-import MapView, {
-  Callout,
-  Circle,
-  Marker,
-  // PROVIDER_GOOGLE
-} from 'react-native-maps';
-
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeLocation, getLocation } from '../../actions/location';
 
 const Position = () => {
-  const [pin, setPin] = useState({
-    latitude: 48.85,
-    longitude: 2.35,
-  });
+  const dispatch = useDispatch();
+  const Geoloc = useSelector(state => state.location.value);
+  const [pin, setPin] = useState({ latitude: 48.85, longitude: 2.35 });
+
+  useEffect(() => {
+    dispatch(getLocation());
+    console.log('geoloc ', Geoloc);
+  }, [dispatch]);
 
   return (
     <View style={styles.container}>
@@ -41,8 +27,8 @@ const Position = () => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-        // provider={PROVIDER_GOOGLE}
       >
+        {/* <Getlocation /> */}
         <Marker coordinate={pin} pinColor="black">
           <Callout>
             <Text>I'm here</Text>

@@ -17,6 +17,7 @@ import '../../configuration/translation';
 const Prevision = () => {
   const dispatch = useDispatch();
   const callAPI = useSelector(state => state.prevision.value);
+  const Geoloc = useSelector(state => state.location.value);
 
   const [datas, setDatas] = useState([]);
   const [prevision, setPrevision] = useState([]);
@@ -27,7 +28,7 @@ const Prevision = () => {
   const array = [];
 
   useEffect(() => {
-    dispatch(getPrevision());
+    dispatch(getPrevision(Geoloc));
     for (let i = 0; i < 7; i++) {
       let newItem = {
         date: callAPI.daily.time[i],

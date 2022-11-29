@@ -1,18 +1,25 @@
 import axios from 'axios';
-import {showMessage} from 'react-native-flash-message';
-import Getlocation from '../components/GetLocation';
+import { showMessage } from 'react-native-flash-message';
 
 export const STORE_PREVISION = 'STORE_PREVISION';
 
-export const getPrevision = () => dispatch => {
+import { useTranslation } from "react-i18next";
+
+
+
+import '../configuration/translation';
+
+export const getPrevision = (coords) => dispatch => {
+
   axios({
     method: 'GET',
-    url: 'https://api.open-meteo.com/v1/forecast?latitude=40.71&longitude=-74.01&timezone=GMT&daily=temperature_2m_max,temperature_2m_min,weathercode',
+    url: `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&timezone=GMT&daily=temperature_2m_max,temperature_2m_min,weathercode`,
   })
     .then(res => {
+
       dispatch(storePrevision(res.data));
       showMessage({
-        message: 'Récupération réussie',
+        message: 'Success',
         type: 'info',
         color: 'white',
         backgroundColor: 'green',
@@ -21,7 +28,7 @@ export const getPrevision = () => dispatch => {
     })
     .catch(err => {
       showMessage({
-        message: 'Récupération échoué...',
+        message: 'Error',
         type: 'info',
         color: 'white',
         backgroundColor: 'red',
