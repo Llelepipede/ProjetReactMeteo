@@ -1,14 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import {Image, Text, TouchableOpacity, View, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
+import { Image, Text, TouchableOpacity, View, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import WeatherCode from '../../components/WeatherCode';
-import {storePrevision, getPrevision} from '../../actions/prevision';
+import { storePrevision, getPrevision } from '../../actions/prevision';
 
 import styled from 'styled-components';
+
+import { useTranslation } from "react-i18next";
+
+import '../../configuration/translation';
 
 const Prevision = () => {
   const dispatch = useDispatch();
@@ -17,6 +21,8 @@ const Prevision = () => {
   const [datas, setDatas] = useState([]);
   const [prevision, setPrevision] = useState([]);
   const navigation = useNavigation();
+
+  const { t, i18n } = useTranslation();
 
   const array = [];
 
@@ -37,9 +43,9 @@ const Prevision = () => {
   return (
     <Container>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Title>‹ Back</Title>
+        <Title>‹ {t('back')}</Title>
       </TouchableOpacity>
-      <Subtitle>Next 7 days</Subtitle>
+      <Subtitle>{t('nextDay')}</Subtitle>
 
       {prevision.map((item, key) => {
         return (

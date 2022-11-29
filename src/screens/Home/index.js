@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import WeatherCode from '../../components/WeatherCode';
-import {storeMeteo, getMeteo} from '../../actions/home';
+import { storeMeteo, getMeteo } from '../../actions/home';
 import Getlocation from '../../components/GetLocation';
 import Capital from '../../assets/Capital/capital.json';
 
@@ -18,7 +18,13 @@ import Humidity from '../../assets/weather/humidity.png';
 
 import Geolocation from '@react-native-community/geolocation';
 
+import { useTranslation } from "react-i18next";
+
+import '../../configuration/translation';
+
 const Home = () => {
+  const { t, i18n } = useTranslation();
+
   const dispatch = useDispatch();
   const callAPI = useSelector(state => state.meteo.value);
   const [datas, setDatas] = useState([]);
@@ -69,12 +75,12 @@ const Home = () => {
       </Button>
 
       <BoxContainer>
-        <TextContainer>Today</TextContainer>
+        <TextContainer>{t("today")}</TextContainer>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('HomeStack', {screen: 'Prevision'})
+            navigation.navigate('HomeStack', { screen: 'Prevision' })
           }>
-          <TextContainer>7 days ›</TextContainer>
+          <TextContainer>{t("days")} ›</TextContainer>
         </TouchableOpacity>
       </BoxContainer>
 
@@ -86,19 +92,19 @@ const Home = () => {
         <SecondContent>
           <Box>
             <Image source={Wind} />
-            <Title>Wind</Title>
+            <Title>{t("wind")}</Title>
             <Description>{datas.windspeed} Km/h</Description>
           </Box>
 
           <Box>
             <Image source={Humidity} />
-            <Title>Humidity</Title>
+            <Title>{t("humidity")}</Title>
             <Description>{currentHumid}%</Description>
           </Box>
 
           <Box>
             <Image source={Rain} />
-            <Title>Chance of rain</Title>
+            <Title>{t("rainRisk")}</Title>
             <Description>{currentPrecipitation}mm</Description>
           </Box>
         </SecondContent>
