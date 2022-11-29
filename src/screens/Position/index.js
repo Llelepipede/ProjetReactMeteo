@@ -32,7 +32,7 @@ const Position = () => {
             <Text>I'm here</Text>
           </Callout>
         </Marker>
-        {/* <Circle center={pin} radius={1000} /> */}
+        <Circle center={pin} radius={1000} />
       </MapView>
     </View>
   );

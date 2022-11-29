@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {View, Text} from 'react-native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { View, Text } from 'react-native';
 
 import Favorite from '../screens/Favorite';
 import HomeStack from './homeStack';
@@ -15,12 +15,12 @@ const BottomNavigator = () => {
 
   return (
     <BottomStack.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         tabBarLabel: () => {
           return null;
         },
         tabBarColor: '#0B0F1A',
-        tabBarIcon: ({focused, color, size}) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let icon;
 
           if (route.name === 'Position') {
