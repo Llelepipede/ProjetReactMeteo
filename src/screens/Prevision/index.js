@@ -29,6 +29,22 @@ const Prevision = () => {
 
   useEffect(() => {
     dispatch(getPrevision(Geoloc));
+    // for (let i = 0; i < 7; i++) {
+    //   let newItem = {
+    //     date: callAPI.daily.time[i],
+    //     temperature_min: callAPI.daily.temperature_2m_min[i],
+    //     temperature_max: callAPI.daily.temperature_2m_max[i],
+    //     weatherCode: WeatherCode(callAPI.daily.weathercode[i]),
+    //   };
+    //   array.push(newItem);
+    // }
+    // setPrevision(array);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!callAPI.daily?.time || !callAPI.daily?.temperature_2m_min || !callAPI.daily?.temperature_2m_max || !callAPI.daily?.weathercode) {
+      return;
+    }
     for (let i = 0; i < 7; i++) {
       let newItem = {
         date: callAPI.daily.time[i],
@@ -39,7 +55,7 @@ const Prevision = () => {
       array.push(newItem);
     }
     setPrevision(array);
-  }, [dispatch]);
+  }, [callAPI])
 
   return (
     <Container>
