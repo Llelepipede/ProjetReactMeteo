@@ -5,7 +5,6 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 
-
 import WeatherCode from '../../components/WeatherCode';
 import {storeMeteo, getMeteo} from '../../actions/home';
 import Getlocation from '../../components/GetLocation';
@@ -102,16 +101,8 @@ const Home = () => {
             <Title>Chance of rain</Title>
             <Description>{currentPrecipitation}mm</Description>
           </Box>
-
         </SecondContent>
       </DetailsContainer>
-
-      <Button
-        title="Deconnexion"
-        onPress={() => navigation.navigate('Login')}
-        color="#1976d2"
-      />
-
     </Container>
   );
 };
