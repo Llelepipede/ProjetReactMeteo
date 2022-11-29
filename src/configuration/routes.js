@@ -32,7 +32,19 @@ const Routes = props => {
               </RootStack.Navigator>
             </NavigationContainer>
           ) : (
-            <Offline />
+            // <Offline />
+
+            <NavigationContainer>
+              <RootStack.Navigator
+                screenOptions={{headerShown: false}}
+                initialRouteName={'Login'}>
+                <RootStack.Screen name="Login" component={Login} />
+                <RootStack.Screen
+                  name="BottomNavigator"
+                  component={BottomNavigator}
+                />
+              </RootStack.Navigator>
+            </NavigationContainer>
           )
         }
       </NetworkConsumer>

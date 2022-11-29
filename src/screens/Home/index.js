@@ -5,6 +5,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 
+
 import WeatherCode from '../../components/WeatherCode';
 import {storeMeteo, getMeteo} from '../../actions/home';
 import Getlocation from '../../components/GetLocation';
@@ -101,16 +102,16 @@ const Home = () => {
             <Title>Chance of rain</Title>
             <Description>{currentPrecipitation}mm</Description>
           </Box>
+
         </SecondContent>
       </DetailsContainer>
 
-      {/* {capital.map((item) => {
-        return (
-          <TouchableOpacity onPress={(item) => dispatch(({ ...item }))}>
-            <Title>{item.name}</Title>
-          </TouchableOpacity>
-        )
-      })} */}
+      <Button
+        title="Deconnexion"
+        onPress={() => navigation.navigate('Login')}
+        color="#1976d2"
+      />
+
     </Container>
   );
 };
@@ -119,6 +120,7 @@ const Container = styled.View`
   background-color: ${props => props.theme.blackColor};
   height: 100%;
 `;
+
 const Button = styled.View`
   border: 1px solid ${props => props.theme.lightGreyColor};
   margin: 6% 4% 10% 48%;
@@ -139,6 +141,7 @@ const BoxContainer = styled.View`
   flex-direction: row;
   margin: 4%;
 `;
+
 const TextContainer = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-weight: bold;
@@ -148,18 +151,21 @@ const Azer = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-size: 60px;
 `;
+
 const DetailsContainer = styled.View`
   background-color: ${props => props.theme.darkGreyColor};
   border-radius: 16px;
   height: 35%;
   margin: 4%;
 `;
+
 const FirstContent = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
 `;
+
 const SecondContent = styled.View`
   display: flex;
   flex-direction: row;

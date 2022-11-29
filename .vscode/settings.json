@@ -1,6 +1,6 @@
 {
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [80],
+  "editor.rulers": [],
   "javascript.validate.enable": false,
   "editor.tabSize": 2,
   "git.ignoreLimitWarning": true,
