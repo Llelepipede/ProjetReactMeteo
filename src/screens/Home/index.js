@@ -15,11 +15,11 @@ import Wind from '../../assets/weather/wind.png';
 import Rain from '../../assets/weather/rain.png';
 import Humidity from '../../assets/weather/humidity.png';
 
-// import Geolocation from '@react-native-community/geolocation';
-
 import { useTranslation } from "react-i18next";
 
 import '../../configuration/translation';
+
+import { MotiView, MotiText, useAnimationState } from 'moti';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
@@ -28,7 +28,6 @@ const Home = () => {
   const callAPI = useSelector(state => state.meteo.value);
   const Geoloc = useSelector(state => state.location.value);
   const [datas, setDatas] = useState([]);
-  const [capital, setCapital] = useState([]);
   const [currentCapital, setCurrentCapital] = useState({});
   const [currentHumid, setCurrentHumid] = useState('');
   const [currentPrecipitation, setCurrentPrecipitation] = useState('');
@@ -37,7 +36,6 @@ const Home = () => {
 
   useEffect(() => {
     console.log('callAPI', callAPI);
-    setCapital(Capital.capital);
     dispatch(getMeteo(Geoloc));
   }, [dispatch]);
 
@@ -54,11 +52,11 @@ const Home = () => {
   }, [callAPI]);
 
   return (
+
     <Container>
       <Button>
-        <ButtonContainer>Paris</ButtonContainer>
+        <ButtonContainer></ButtonContainer>
       </Button>
-
       <BoxContainer>
         <TextContainer>{t("today")}</TextContainer>
         <TouchableOpacity
@@ -68,40 +66,50 @@ const Home = () => {
           <TextContainer>{t("days")} ›</TextContainer>
         </TouchableOpacity>
       </BoxContainer>
+      <AnimatedView
+        from={{
+          opacity: 0,
+          scale: 0.4,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+        }}
+        transition={{
+          type: 'timing',
+          duration: 1000,
+          scale: {
+            type: 'spring',
+            delay: 100,
+          },
+        }}>
+        <DetailsContainer>
+          <FirstContent>
+            <Image source={currentLogo} />
+            <Temperature>{datas.temperature}°</Temperature>
+          </FirstContent>
+          <SecondContent>
+            <Box>
+              <Image source={Wind} />
+              <Title>{t("wind")}</Title>
+              <Description>{datas.windspeed} Km/h</Description>
+            </Box>
 
-      <DetailsContainer>
-        <FirstContent>
-          <Image source={currentLogo} />
-          <Azer>{datas.temperature}°</Azer>
-        </FirstContent>
-        <SecondContent>
-          <Box>
-            <Image source={Wind} />
-            <Title>{t("wind")}</Title>
-            <Description>{datas.windspeed} Km/h</Description>
-          </Box>
+            <Box>
+              <Image source={Humidity} />
+              <Title>{t("humidity")}</Title>
+              <Description>{currentHumid}%</Description>
+            </Box>
 
-          <Box>
-            <Image source={Humidity} />
-            <Title>{t("humidity")}</Title>
-            <Description>{currentHumid}%</Description>
-          </Box>
+            <Box>
+              <Image source={Rain} />
+              <Title>{t("rainRisk")}</Title>
+              <Description>{currentPrecipitation}mm</Description>
+            </Box>
+          </SecondContent>
 
-          <Box>
-            <Image source={Rain} />
-            <Title>{t("rainRisk")}</Title>
-            <Description>{currentPrecipitation}mm</Description>
-          </Box>
-        </SecondContent>
-      </DetailsContainer>
-
-      {/* {capital.map((item) => {
-        return (
-          <TouchableOpacity onPress={(item) => dispatch(({ ...item }))}>
-            <Title>{item.name}</Title>
-          </TouchableOpacity>
-        )
-      })} */}
+        </DetailsContainer>
+      </AnimatedView >
     </Container>
   );
 };
@@ -135,7 +143,7 @@ const TextContainer = styled.Text`
   font-weight: bold;
   font-size: 18px;
 `;
-const Azer = styled.Text`
+const Temperature = styled.Text`
   color: ${props => props.theme.lightGreyColor};
   font-size: 60px;
 `;
@@ -177,6 +185,10 @@ const Description = styled.Text`
   color: ${props => props.theme.whiteColor};
   font-weight: bold;
   font-size: 12px;
+`;
+const AnimatedView = styled(MotiView)`
+  height: 100%;
+  width: 100%%;
 `;
 
 export default Home;
