@@ -9,12 +9,10 @@ export default {
     days: "7 days",
     settings: "Settings",
     back: "Back",
-    recuperationyes: "Recuperation Success",
-    recuperationno: "Recuperation Error",
     login: "Login",
     offline: "You are offline",
     continue: "Please sign in",
-    nextDay: "Next 7 days"
-
+    nextDay: "Next 7 days",
+    myPosition: "My position"
   }
 };

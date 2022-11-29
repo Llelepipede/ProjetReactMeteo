@@ -10,12 +10,10 @@ import { storeLocation, getLocation } from '../../actions/location';
 const Position = () => {
   const dispatch = useDispatch();
   const Geoloc = useSelector(state => state.location.value);
-  const [pin, setPin] = useState({ latitude: 48.85, longitude: 2.35 });
+  const [pin, setPin] = useState({ latitude: 46, longitude: 2 });
 
   useEffect(() => {
-    setPin(Geoloc.latitude, Geoloc.longitude);
-    console.log("pin in position: ", pin)
-    console.log('geoloc ', Geoloc);
+    setPin({ latitude: Geoloc.latitude, longitude: Geoloc.longitude });
   }, [dispatch]);
 
   return (
@@ -25,8 +23,8 @@ const Position = () => {
         initialRegion={{
           latitude: Geoloc.latitude,
           longitude: Geoloc.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitudeDelta: 4,
+          longitudeDelta: 4,
         }}
       >
         <Marker coordinate={pin} pinColor="black">
@@ -34,7 +32,7 @@ const Position = () => {
             <Text>I'm here</Text>
           </Callout>
         </Marker>
-        <Circle center={pin} radius={1000} />
+        {/* <Circle center={pin} radius={1000} /> */}
       </MapView>
     </View>
   );

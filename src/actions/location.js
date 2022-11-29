@@ -17,7 +17,8 @@ export const getLocation = () => dispatch => {
     () => {
       Geolocation.getCurrentPosition(
         position => {
-          console.log(position.coords);
+          console.log('position', position.coords);
+          console.log('typeof', typeof position.coords);
           dispatch(storeLocation(position.coords));
         },
         error => {

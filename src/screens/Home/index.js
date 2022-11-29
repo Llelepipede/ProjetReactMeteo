@@ -35,7 +35,6 @@ const Home = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    console.log('callAPI', callAPI);
     dispatch(getMeteo(Geoloc));
   }, [dispatch]);
 
@@ -55,7 +54,7 @@ const Home = () => {
 
     <Container>
       <Button>
-        <ButtonContainer></ButtonContainer>
+        <ButtonContainer>{t("myPosition")}</ButtonContainer>
       </Button>
       <BoxContainer>
         <TextContainer>{t("today")}</TextContainer>

@@ -15,7 +15,6 @@ export const getMeteo = (coords) => dispatch => {
     url: `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&timezone=GMT&hourly=relativehumidity_2m,precipitation,temperature_2m,weathercode&current_weather=true`,
   })
     .then(res => {
-      console.log("notre call api", `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&timezone=GMT&hourly=relativehumidity_2m,precipitation,temperature_2m,weathercode&current_weather=true`)
       dispatch(storeMeteo(res.data));
       showMessage({
         message: 'Success',
