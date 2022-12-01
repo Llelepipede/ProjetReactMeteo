@@ -17,38 +17,22 @@ const Login = () => {
   const [user, setUser] = useState('');
   const navigation = useNavigation();
 
-  useEffect(() => {
+  // RECUPERATION DES INFORMATIONS API + CONDITION DU BOUTTON GO TO HOME
+  // FONCTIONNALITE submitLogin
+  const submitLogin = async text => {
+    text.preventDefault();
     dispatch(getLogin());
-    for (let i = 0; i < 7; i++) {
-      let newItem = {
-        // date: callAPI.daily.time[i],
-        // temperature_min: callAPI.daily.temperature_2m_min[i],
-        // temperature_max: callAPI.daily.temperature_2m_max[i],
-        // weatherCode: WeatherCode(callAPI.daily.weathercode[i]),
-      };
-      array.push(newItem);
-      // Envoie vers l'accueil
-      navigation.navigate('BottomNavigator', {screen: 'Home'});
+    try {
+      const result = await axios.post(url, user);
+      const token = result.headers['x-access-token'];
+      if (result && result.headers && result.headers['x-access-token']) {
+        await AsyncStorage.setItem('token', token); // UTILISER REDUX
+        navigation.navigate('BottomNavigator', {screen: 'Home'});
+      }
+    } catch (error) {
+      console.log(error);
     }
-    setLogin(array);
-  }, [dispatch]);
-
-  // // RECUPERATION DES INFORMATIONS API + CONDITION DU BOUTTON GO TO HOME
-  // // FONCTIONNALITE submitLogin
-  // const submitLogin = async text => {
-  //   text.preventDefault();
-  //   const url = 'https://easy-login-api.herokuapp.com/users/login';
-  //   try {
-  //     const result = await axios.post(url, user);
-  //     const token = result.headers['x-access-token'];
-  //     if (result && result.headers && result.headers['x-access-token']) {
-  //       await AsyncStorage.setItem('token', token); // UTILISER REDUX
-  //       navigation.navigate('BottomNavigator', {screen: 'Home'});
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  };
 
   return (
     <Container>
