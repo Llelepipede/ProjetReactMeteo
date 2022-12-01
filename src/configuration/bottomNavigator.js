@@ -15,8 +15,10 @@ const BottomNavigator = () => {
 
   return (
     <BottomStack.Navigator
+      barStyle={{ backgroundColor: '#0B0F1A' }}
       screenOptions={({ route }) => ({
         tabBarLabel: () => { return null },
+
         tabBarIcon: ({ focused, color, size }) => {
           let icon;
 
@@ -33,7 +35,7 @@ const BottomNavigator = () => {
       <BottomStack.Screen name="Position" component={Position} />
       <BottomStack.Screen name="HomeStack" component={HomeStack} />
       <BottomStack.Screen name="Settings" component={Settings} />
-    </BottomStack.Navigator>
+    </BottomStack.Navigator >
   );
 };
 
