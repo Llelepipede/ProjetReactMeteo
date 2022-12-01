@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import MapView, { Callout, Circle, Marker } from 'react-native-maps';
-
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
+
+import MapView, { Callout, Marker } from 'react-native-maps';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { storeLocation, getLocation } from '../../actions/location';
@@ -32,7 +32,6 @@ const Position = () => {
             <Text>I'm here</Text>
           </Callout>
         </Marker>
-        <Circle center={pin} radius={1000} />
       </MapView>
     </View>
   );

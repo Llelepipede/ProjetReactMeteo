@@ -5,25 +5,23 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import WeatherCode from '../../components/WeatherCode';
 import { storeMeteo, getMeteo } from '../../actions/home';
 import Capital from '../../assets/Capital/capital.json';
 
-import styled from 'styled-components';
 
-import Wind from '../../assets/weather/wind.png';
-import Rain from '../../assets/weather/rain.png';
 import Humidity from '../../assets/weather/humidity.png';
+import Rain from '../../assets/weather/rain.png';
+import WeatherCode from '../../components/WeatherCode';
+import Wind from '../../assets/weather/wind.png';
 
 import { useTranslation } from "react-i18next";
-
 import '../../configuration/translation';
 
 import { MotiView, MotiText, useAnimationState } from 'moti';
+import styled from 'styled-components';
+
 
 const Home = () => {
-  const { t, i18n } = useTranslation();
-
   const dispatch = useDispatch();
   const callAPI = useSelector(state => state.meteo.value);
   const Geoloc = useSelector(state => state.location.value);
@@ -32,7 +30,9 @@ const Home = () => {
   const [currentHumid, setCurrentHumid] = useState('');
   const [currentPrecipitation, setCurrentPrecipitation] = useState('');
   const [currentLogo, setCurrentLogo] = useState([]);
+
   const navigation = useNavigation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     dispatch(getMeteo(Geoloc));
@@ -43,7 +43,6 @@ const Home = () => {
       return;
     }
     setDatas(callAPI.current_weather);
-
     const index = callAPI.hourly.time.indexOf(callAPI.current_weather.time);
     setCurrentHumid(callAPI.hourly.relativehumidity_2m[index]);
     setCurrentPrecipitation(callAPI.hourly.precipitation[index]);
