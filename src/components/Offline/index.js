@@ -1,13 +1,25 @@
 import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import Lottie from 'lottie-react-native';
+import styled from 'styled-components';
+
+
 
 const Offline = () => {
   return (
-    <SafeAreaView>
-      <Lottie source={require('../../assets/SplashScreen/weather-splash.json')} autoPlay loop />
-    </SafeAreaView>
+    <Container><SafeAreaView
+    style={{flex : 1}}>
+      <Lottie source={require('../../assets/SplashScreen/t-rex_No-Network.json')} 
+      autoPlay loop= { false }
+      onAnimationFinish
+      />
+    </SafeAreaView></Container>
   );
 };
 
 export default Offline;
+
+const Container = styled.View`
+  background-color: white;
+  flex: 1;
+`;

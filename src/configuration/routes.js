@@ -11,9 +11,11 @@ import Home from '../screens/Home';
 import Login from '../screens/Login';
 import Prevision from '../screens/Prevision';
 import Offline from '../components/Offline';
+import SplashScreen from '../screens/SplashScreen';
 
 const Routes = props => {
   const RootStack = createStackNavigator();
+
 
   return (
     <NetworkProvider>
@@ -23,7 +25,8 @@ const Routes = props => {
             <NavigationContainer>
               <RootStack.Navigator
                 screenOptions={{headerShown: false}}
-                initialRouteName={'Login'}>
+                initialRouteName={'SplashScreen'}>
+                <RootStack.Screen name="SplashScreen" component={SplashScreen} />
                 <RootStack.Screen name="Login" component={Login} />
                 <RootStack.Screen
                   name="BottomNavigator"
