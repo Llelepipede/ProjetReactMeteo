@@ -1,40 +1,94 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 import {Button, View, Text} from 'react-native';
 
 import styled from 'styled-components';
 
+import {storeLogin, getLogin} from '../../actions/login';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const callAPI = useSelector(state => state.login.value);
+
+  const [datas, setDatas] = useState([]);
   const [user, setUser] = useState('');
   const navigation = useNavigation();
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
 
-  // Let's go faire le login ?
+  useEffect(() => {
+    dispatch(getLogin());
+    for (let i = 0; i < 7; i++) {
+      let newItem = {
+        // date: callAPI.daily.time[i],
+        // temperature_min: callAPI.daily.temperature_2m_min[i],
+        // temperature_max: callAPI.daily.temperature_2m_max[i],
+        // weatherCode: WeatherCode(callAPI.daily.weathercode[i]),
+      };
+      array.push(newItem);
+      // Envoie vers l'accueil
+      navigation.navigate('BottomNavigator', {screen: 'Home'});
+    }
+    setLogin(array);
+  }, [dispatch]);
+
+  // // RECUPERATION DES INFORMATIONS API + CONDITION DU BOUTTON GO TO HOME
+  // // FONCTIONNALITE submitLogin
+  // const submitLogin = async text => {
+  //   text.preventDefault();
+  //   const url = 'https://easy-login-api.herokuapp.com/users/login';
+  //   try {
+  //     const result = await axios.post(url, user);
+  //     const token = result.headers['x-access-token'];
+  //     if (result && result.headers && result.headers['x-access-token']) {
+  //       await AsyncStorage.setItem('token', token); // UTILISER REDUX
+  //       navigation.navigate('BottomNavigator', {screen: 'Home'});
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <Container>
       <Title>Connexion</Title>
 
       <View>
+        {/* Identifiant */}
         <Input
-          onChangeText={setUsername}
-          value={username}
-          placeholder="Identifiant"
+          label="Username"
+          name="username"
+          id="username"
+          type="username"
+          secureTextEntry={false}
+          placeholder="Username"
+          onChangeText={text => setUser({...user, username: text})}
         />
+
+        {/* Mot de passe */}
         <Input
-          onChangeText={setPassword}
-          value={password}
+          label="Password"
+          name="password"
+          id="password"
+          type="password"
+          secureTextEntry={true}
           placeholder="Password"
-          secureTextEntry
+          onChangeText={text => setUser({...user, password: text})}
         />
       </View>
 
       <Button
         title="Go to Home"
+        type="submit"
         onPress={() => navigation.navigate('BottomNavigator', {screen: 'Home'})}
+        color="#1976d2"
+      />
+
+      <Button
+        title="Go to Home"
+        type="submit"
+        onPress={e => submitLogin(e)} // FONCTIONNALITE submitLogin VOIR EN HAUT
         color="#1976d2"
       />
     </Container>
