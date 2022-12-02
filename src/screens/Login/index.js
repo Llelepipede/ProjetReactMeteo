@@ -52,8 +52,8 @@ const Title = styled.Text`
   text-align: center;
   font-weight: bold;
   font-size: 18px;
-  margin: 4%
-`;
+  margin: 4%;
+`
 
 const BoxContainer = styled.TouchableOpacity`
   display: flex;
