@@ -6,8 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { storeMeteo, getMeteo } from '../../actions/home';
-import Capital from '../../assets/Capital/capital.json';
-
 
 import Humidity from '../../assets/weather/humidity.png';
 import Rain from '../../assets/weather/rain.png';
@@ -25,6 +23,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const callAPI = useSelector(state => state.meteo.value);
   const Geoloc = useSelector(state => state.location.value);
+
   const [datas, setDatas] = useState([]);
   const [currentCapital, setCurrentCapital] = useState({});
   const [currentHumid, setCurrentHumid] = useState('');
@@ -164,7 +163,6 @@ const SecondContent = styled.View`
 `;
 const Box = styled.View`
   background-color: ${props => props.theme.darkGreyColor};
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   display: flex;
   align-items: center;
   justify-content: center;

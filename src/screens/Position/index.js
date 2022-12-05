@@ -37,10 +37,12 @@ const Position = () => {
   );
 };
 
+
+// Pour la réalisation de cette partie, je n'ai pas eu le temps de faire un styled components,
+// j'ai demandé aux autres qui ont oublié de le faire malheureusement. Delphine
 const styles = StyleSheet.create({
   conainer: {
     flex: 1,
-    // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

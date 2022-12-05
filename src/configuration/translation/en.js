@@ -13,6 +13,7 @@ export default {
     offline: "You are offline",
     continue: "Please sign in",
     nextDay: "Next 7 days",
-    myPosition: "My position"
+    myPosition: "My actuel T°",
+    langage: "Langage"
   }
 };
