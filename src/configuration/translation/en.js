@@ -1,5 +1,7 @@
 export default {
   translation: {
+    home: "Welcome to MeteoApp",
+    direction: "Go to home",
     temperature: "Temperature",
     rainRisk: "Chance of rain",
     wind: "Wind",

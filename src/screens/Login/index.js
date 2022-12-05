@@ -18,7 +18,6 @@ import styled from 'styled-components';
 const Login = () => {
   const dispatch = useDispatch();
   const Geoloc = useSelector(state => state.location.value);
-  const [user, setUser] = useState('');
   const navigation = useNavigation();
 
   const { t, i18n } = useTranslation();
@@ -32,11 +31,10 @@ const Login = () => {
 
   return (
     <Container>
-      <Title>{t('Weather report')}</Title>
-
+      <Title>{t('home')}</Title>
       <BoxContainer>
         <ButtonContainer onPress={() => navigation.navigate('BottomNavigator', { screen: 'Home' })}>
-          <ButtonText>Home</ButtonText>
+          <ButtonText>{t('direction')}</ButtonText>
         </ButtonContainer>
       </BoxContainer>
 
@@ -46,6 +44,8 @@ const Login = () => {
 
 const Container = styled.View`
   background-color: ${props => props.theme.blackColor};
+  display: flex;
+  justify-content: center;
   height: 100%;
 `;
 
@@ -54,7 +54,7 @@ const Title = styled.Text`
   text-align: center;
   font-weight: bold;
   font-size: 18px;
-  margin: 4%;
+  margin-bottom: 10%;
 `
 
 const BoxContainer = styled.TouchableOpacity`
@@ -75,8 +75,6 @@ const ButtonText = styled.Text`
   font-weight: bold;
   font-size: 16px;
 `;
-
-
 
 export default Login;
 
