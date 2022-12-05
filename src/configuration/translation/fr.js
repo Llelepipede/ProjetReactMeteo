@@ -13,6 +13,7 @@ export default {
     offline: "Vous êtes hors-ligne",
     continue: "Connectez-vous pour continuer",
     nextDay: "Les 7 prochains days",
-    myPosition: "Ma position"
+    myPosition: "Ma T° actuelle",
+    langage: "Langues"
   }
 };
